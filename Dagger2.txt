@@ -1,0 +1,18 @@
+AppComponent %99.9 olacak. - içinde application bulunduruyor.(interface - @Singleton - @Component  - extends AndroidInjector<BaseApplication>) 
+	Componentleri Service olarak düsün.
+	modules içine AndroidSupportInjectionModule::class her zaman eklemen lazim.
+	@BindsInstance - Component construct yaptigida hazir nesnen varsa kullanilir. - Componentin Contructorin da gözüküyor.
+BaseApplication: DaggerApplication() olacak - Içinde application i AppComponent içine inject ediyoruz.
+
+ActivityBuilderModule ( abstract - @Module )
+	Tüm sub componentleri construc etmek ile sorumlu. - Activityler
+@ContributesAndroidInjector
+abstract fun contributeAuthActivity(): AuthActivity
+
+Fragmentlar için;
+MainFragmentBuildersModule (abstract - @Module )
+
+!! Activityler -> extend DaggerAppCompatActivity 
+!! Fragmentlar -> extend DaggerFragment
+
+-- Componentler objelerimizi olusturur, depolar ve isteyene saglar - verir. (The Injector)
