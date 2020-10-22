@@ -1,18 +1,24 @@
-AppComponent %99.9 olacak. - içinde application bulunduruyor.(interface - @Singleton - @Component  - extends AndroidInjector<BaseApplication>) 
-	Componentleri Service olarak düsün.
-	modules içine AndroidSupportInjectionModule::class her zaman eklemen lazim.
-	@BindsInstance - Component construct yaptigida hazir nesnen varsa kullanilir. - Componentin Contructorin da gözüküyor.
-BaseApplication: DaggerApplication() olacak - Içinde application i AppComponent içine inject ediyoruz.
+AppComponent %99.9 olacak. - iÃ§inde application bulunduruyor.(interface - @Singleton - @Component  - extends AndroidInjector<BaseApplication>) 
+	Componentleri Service olarak dÃ¼sÃ¼n.
+	modules iÃ§ine AndroidSupportInjectionModule::class her zaman eklemen lazim.
+	@BindsInstance - Component construct yaptigida hazir nesnen varsa kullanilir. - Componentin Contructorin da gÃ¶zÃ¼kÃ¼yor.
+BaseApplication: DaggerApplication() olacak - IÃ§inde application i AppComponent iÃ§ine inject ediyoruz.
 
 ActivityBuilderModule ( abstract - @Module )
-	Tüm sub componentleri construc etmek ile sorumlu. - Activityler
+	TÃ¼m sub componentleri construct etmek ile sorumlu. - Activityler
 @ContributesAndroidInjector
 abstract fun contributeAuthActivity(): AuthActivity
 
-Fragmentlar için;
+Fragmentlar iÃ§in;
 MainFragmentBuildersModule (abstract - @Module )
+
+BroadCastReceiver iÃ§in;
+BroadCastReceiverModule (abstract - @Module )
+@ContributesAndroidInjector
+abstract fun contributeReceiver(): Receiver
 
 !! Activityler -> extend DaggerAppCompatActivity 
 !! Fragmentlar -> extend DaggerFragment
+!! BroadCastReceiver -> extend DaggerBroadcastReceiver - onReceive iÃ§inde AndroidInjection.inject(this,context)
 
 -- Componentler objelerimizi olusturur, depolar ve isteyene saglar - verir. (The Injector)
